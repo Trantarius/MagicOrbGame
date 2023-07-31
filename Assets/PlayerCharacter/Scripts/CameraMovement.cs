@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public GameObject target; // the object to follow
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Tooltip("The object to follow")]
+    public GameObject target;
+    [Tooltip("Offset between camera and player")]
+    public Vector3 offset;
 
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = new Vector3(
-            target.transform.position.x, // x
-            target.transform.position.y, //
-            -10// z
-        );
+        transform.rotation=Quaternion.identity;
+        transform.position = target.transform.position+offset;
     }
 }
