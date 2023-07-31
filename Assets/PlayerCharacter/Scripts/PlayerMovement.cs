@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     
     private Rigidbody rb;
+    
+
+    public GameObject nose;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,18 @@ public class PlayerMovement : MonoBehaviour
     {
         float move = Input.GetAxis("Horizontal"); // A/D or Left/Right
         rb.velocity = new Vector3(move * speed, rb.velocity.y); // Move left/right
+
+        if (move > 0)
+        {
+            // Moving right, rotate player to face right
+            transform.rotation = Quaternion.Euler(0, 0, 0); // Face right (no Y-axis rotation)
+        }
+        else if (move < 0)
+        {
+            // Moving left, rotate player to face left
+            transform.rotation = Quaternion.Euler(0, 180, 0); // Face left (180 degrees Y-axis rotation)
+        }
+
 
         // Apply jump only if the player is grounded (not jumping)
         if (Input.GetButtonDown("Jump") && !isJumping)
