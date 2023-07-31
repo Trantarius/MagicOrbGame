@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput pi;
     private float jumpTime=0;
 
+    //Used for finding the average floor normal
+    private Vector3 floornormTotal;
+    private int floornormCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,12 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float currentSpeed=rb.velocity.x;
-        float targetSpeed=move*speed;
-        float moveForce=(targetSpeed-currentSpeed)*acceleration;
-        rb.AddForce(new Vector3(moveForce,0,0),ForceMode.Force);
-        isGrounded=false;
-
         if(jumpTime>0){
             if(pi.actions["Jump"].IsPressed()){
                 rb.AddForce(Vector3.up*jumpForce/jumpDuration);
@@ -46,12 +44,42 @@ public class PlayerMovement : MonoBehaviour
             jumpTime-=Time.fixedDeltaTime;
         }
 
+        // If on the ground, movement will be considered tangent to the ground surface.
+        // This prevents the movement force from pushing the player into the air.
+        Vector3 right;
+        float forceMul=1.0f;
+        if(isGrounded){
+            Vector3 floornorm=(floornormTotal/floornormCount).normalized;
+            right=new Vector3(floornorm.y,-floornorm.x,floornorm.z);
+
+            floornormTotal=Vector3.zero;
+            floornormCount=0;
+        }
+        else{
+            right=Vector3.right;
+            forceMul=0.25f;
+        }
+
+        float currentSpeed=Vector3.Dot(rb.velocity,right);
+        float targetSpeed=move*speed;
+        float moveForce=(targetSpeed-currentSpeed)*acceleration;
+        rb.AddForce(right*moveForce*forceMul);
+        
+        isGrounded=false;
     }
 
     void OnCollisionStay(Collision collision){
+
         ContactPoint contact=collision.GetContact(0);
         float dir=Vector3.Dot(Vector3.up,contact.normal);
-        isGrounded |= dir>0.707;
+
+        if(dir>0.707){// surface is < 45 degrees from horizontal
+            isGrounded=true;
+            //nullify horizontal correction force, so that the player doesn't slide down shallow slopes.
+            rb.AddForce(-Vector3.right*collision.impulse.x,ForceMode.Impulse);
+            floornormTotal+=contact.normal;
+            floornormCount++;
+        }
     }
 
 
