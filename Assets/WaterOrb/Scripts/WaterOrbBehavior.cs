@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class WaterOrbBehavior : MonoBehaviour
 {
-    public float slowdownFactor = 0.5f; // Adjust this to control how much the orb slows down upon collision
+    public float slowdownFactor = 0.5f;
+    public float magneticForce = 10f; // Adjust the strength of the magnetic force
+    public float attractionRadius = 5f; // Adjust the radius for detecting attraction orbs
+
     private Rigidbody rb;
 
     void Start()
@@ -12,15 +15,33 @@ public class WaterOrbBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    void FixedUpdate()
+    {
+        DetectAndRespondToAttractionOrbs();
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            // Calculate the new velocity by reducing the current velocity based on the slowdownFactor
             Vector3 newVelocity = rb.velocity * slowdownFactor;
-
-            // Apply the new velocity to the Rigidbody
             rb.velocity = newVelocity;
+        }
+    }
+
+    void DetectAndRespondToAttractionOrbs()
+    {
+        Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, attractionRadius);
+
+        foreach (Collider collider in nearbyColliders)
+        {
+            if (collider.CompareTag("AttractionOrb"))
+            {
+                Vector3 directionToAttractionOrb = collider.transform.position - transform.position;
+                directionToAttractionOrb.Normalize();
+
+                rb.AddForce(directionToAttractionOrb * magneticForce * Time.fixedDeltaTime);
+            }
         }
     }
 }
