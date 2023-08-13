@@ -17,7 +17,7 @@ public class ScaryOrb : MonoBehaviour
 
     void FixedUpdate()
     {
-        List<GameObject> detected=detector.getVisible();
+        List<GameObject> detected=detector.GetVisible();
 
         if(detected.Count==0){
             return;

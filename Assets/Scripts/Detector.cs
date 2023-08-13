@@ -30,12 +30,12 @@ public class Detector : MonoBehaviour
     }
 
     // Gets all detected objects, regardless of visibility.
-    public List<GameObject> getNearby(){
+    public List<GameObject> GetNearby(){
         return new List<GameObject>(nearby);
     }
 
     // Gets detected instances of a particular component type.
-    public List<T> getNearbyComponent<T>(){
+    public List<T> GetNearbyComponent<T>(){
         List<T> ret=new List<T>();
 
         foreach(GameObject nb in nearby){
@@ -48,7 +48,7 @@ public class Detector : MonoBehaviour
     }
 
     // Gets only the objects that are visible to this detector.
-    public List<GameObject> getVisible(){
+    public List<GameObject> GetVisible(){
         List<GameObject> ret=new List<GameObject>();
 
         foreach(GameObject nb in nearby){
@@ -69,7 +69,7 @@ public class Detector : MonoBehaviour
     }
 
     // Gets only the T instances that are visible to this detector.
-    public List<T> getVisibleComponent<T>(){
+    public List<T> GetVisibleComponent<T>(){
         List<T> ret=new List<T>();
 
         foreach(GameObject nb in nearby){
