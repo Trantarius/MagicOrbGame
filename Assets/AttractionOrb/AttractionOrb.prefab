@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2582465822416576594}
   - component: {fileID: 2582465822416576595}
   - component: {fileID: 2582465822416576591}
-  - component: {fileID: 1884681213675822621}
+  - component: {fileID: 2070666899060016954}
   m_Layer: 11
   m_Name: AttractionOrb
   m_TagString: AttractionOrb
@@ -111,7 +111,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!114 &1884681213675822621
+--- !u!114 &2070666899060016954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,6 +120,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2582465822416576596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be7762903a3fbc441866edb1ac38bc2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 238d0603e03d19bf59b8f0a9875ad0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
