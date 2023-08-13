@@ -35,6 +35,7 @@ public class WaterOrb : MonoBehaviour
             moveDir-=(orb.transform.position-transform.position).normalized;
         }
 
-        rb.AddForce(moveDir*magneticForce);
+        Vector3 torq=Vector3.Cross(moveDir,Vector3.down);
+        rb.AddTorque(torq*magneticForce);
     }
 }
