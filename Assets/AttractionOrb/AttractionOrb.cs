@@ -1,18 +1,22 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttractionOrb : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float magneticForce = 10f; // Adjust this value to control the strength of the magnetic force
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerStay(Collider other)
     {
-        
+        if (other.CompareTag("WaterOrb"))
+        {
+            // Calculate the force direction from the water orb to the attraction orb
+            Vector3 forceDirection = transform.position - other.transform.position;
+            forceDirection.Normalize();
+
+            // Apply the magnetic force to the water orb's Rigidbody
+            Rigidbody waterOrbRb = other.GetComponent<Rigidbody>();
+            waterOrbRb.AddForce(forceDirection * magneticForce * Time.fixedDeltaTime);
+        }
     }
 }
