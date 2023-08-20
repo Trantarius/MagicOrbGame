@@ -6,6 +6,9 @@ public class EventBus : MonoBehaviour
     public delegate void OnLevelCompleted();
     public static event OnLevelCompleted onLevelCompleted;
 
+    public delegate void OnLevelFailed();
+    public static event OnLevelFailed onLevelFailed;
+
    
     void Awake()
     {
@@ -19,10 +22,19 @@ public class EventBus : MonoBehaviour
         }
     }
 
-    public static void RaiseOnLevelCompleted() {
+    public static void RaiseOnLevelCompleted()
+    {
         if (onLevelCompleted != null)
         {
             onLevelCompleted();
+        }
+    }
+
+    public static void RaiseOnLevelFailed()
+    {
+        if (onLevelFailed != null)
+        {
+            onLevelFailed();
         }
     }
 }

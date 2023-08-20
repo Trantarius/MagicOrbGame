@@ -19,22 +19,30 @@ public class LevelManager : MonoBehaviour
     void OnEnable()
     {
         EventBus.onLevelCompleted += LoadLevel;
+        EventBus.onLevelFailed += RestartLevel;
     }
 
     void OnDisable()
     {
         EventBus.onLevelCompleted -= LoadLevel;
+        EventBus.onLevelFailed -= RestartLevel;
     }
 
     public void LoadLevel()
     {
         var nextSceneIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCount;
-        StartCoroutine(loadLevel(nextSceneIndex));
+        StartCoroutine(LoadLevel(nextSceneIndex));
     }
 
-    private IEnumerator loadLevel(int nextSceneIndex)
+    private IEnumerator LoadLevel(int nextSceneIndex)
     {
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    public void RestartLevel()
+    {
+        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(LoadLevel(currentSceneIndex));
     }
 }
