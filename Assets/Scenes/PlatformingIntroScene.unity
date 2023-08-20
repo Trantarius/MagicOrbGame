@@ -549,6 +549,12 @@ PrefabInstance:
       propertyPath: offset.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3376800737403900135, guid: bc91dc6673a2ad251a2475d5fb3ffca2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -3033667219593020291, guid: 717454522c4af85e4aa3935c07d4d60f,
+        type: 3}
     - target: {fileID: 5503147023301521578, guid: bc91dc6673a2ad251a2475d5fb3ffca2,
         type: 3}
       propertyPath: m_LocalPosition.y
