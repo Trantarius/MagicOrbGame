@@ -12,6 +12,14 @@ public class PlayerMagicBallShooting : MonoBehaviour
 
     void Update()
     {
+        
+        //Press 'E' to shoot magic ball
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ShootMagicBall();
+        }
+        
         if (Input.GetButtonDown("Fire1")) // Change "Fire1" to your preferred shoot input
         {
             ShootMagicBall();
