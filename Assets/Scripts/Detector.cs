@@ -35,7 +35,7 @@ public class Detector : MonoBehaviour
     }
 
     // Gets detected instances of a particular component type.
-    public List<T> GetNearbyComponent<T>(){
+    public List<T> GetNearbyComponents<T>(){
         List<T> ret=new List<T>();
 
         foreach(GameObject nb in nearby){

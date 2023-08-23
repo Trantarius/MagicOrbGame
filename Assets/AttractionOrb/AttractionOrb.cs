@@ -10,6 +10,7 @@ public class AttractionOrb : MonoBehaviour
     {
         if (other.CompareTag("WaterOrb"))
         {
+            Debug.Log("OnTriggerStay");
             // Calculate the force direction from the water orb to the attraction orb
             Vector3 forceDirection = transform.position - other.transform.position;
             forceDirection.Normalize();
