@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody rb;
     private PlayerInput pi;
+    public AudioSource jumpAudioSource;
     private float jumpTime=0;
 
     //Used for finding the average floor normal
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         pi = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+        jumpAudioSource = GetComponent<AudioSource>();
         //disables sleeping. If the body sleeps, we will stop receiving OnCollsionStay events.
         rb.sleepThreshold=0.0f;
     }
@@ -113,7 +115,10 @@ public class PlayerMovement : MonoBehaviour
         if(context.performed){
             //button is pressed
             if(isGrounded){
-                jumpTime=jumpDuration;
+                // Play the jump sound
+                jumpAudioSource.Play();
+
+                jumpTime =jumpDuration;
             }
         }else if(context.canceled){
             //button is released
