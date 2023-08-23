@@ -20,7 +20,7 @@ public class WaterOrb : MonoBehaviour
     {
         Vector3 moveDir=Vector3.zero;
 
-        List<AttractionOrb> attractionOrbs = detector.GetVisibleComponent<AttractionOrb>();
+        List<AttractionOrb> attractionOrbs = detector.GetNearbyComponents<AttractionOrb>();
         foreach(AttractionOrb orb in attractionOrbs){
             Vector3 rel=orb.transform.position-transform.position;
             float dist=rel.magnitude;

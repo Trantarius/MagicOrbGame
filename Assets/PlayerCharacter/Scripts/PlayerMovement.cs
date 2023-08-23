@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     //Used for finding the average floor normal
     private Vector3 floornormTotal;
     private int floornormCount;
+
+    private Boolean isControlsDisabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -95,10 +98,18 @@ public class PlayerMovement : MonoBehaviour
 
 
     public void OnMove(InputAction.CallbackContext context){
+        if (isControlsDisabled) {
+            return;
+        }
+
         move=context.ReadValue<Vector2>().x;
     }
 
     public void OnJump(InputAction.CallbackContext context){
+        if (isControlsDisabled) {
+            return;
+        }
+
         if(context.performed){
             //button is pressed
             if(isGrounded){
@@ -108,5 +119,23 @@ public class PlayerMovement : MonoBehaviour
             //button is released
             jumpTime=0;
         }
+    }
+
+    void OnEnable()
+    {
+        EventBus.onLevelCompleted += StopaAndDisableControls;
+        EventBus.onLevelFailed += StopaAndDisableControls;
+    }
+
+    void OnDisable()
+    {
+        EventBus.onLevelCompleted -= StopaAndDisableControls;
+        EventBus.onLevelFailed -= StopaAndDisableControls;
+    }
+
+    private void StopaAndDisableControls()
+    {
+        move = 0;
+        isControlsDisabled = true;
     }
 }
