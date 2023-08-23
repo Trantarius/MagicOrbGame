@@ -1,55 +1,61 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ThiefBehavior : MonoBehaviour
 {
     private bool isHoldingOrb = false;
     private GameObject heldOrb;
+    private MeshRenderer mr;
+    private bool dead;
 
-    public float movementSpeed = 5f;
+    public float movementSpeed = 7f;
 
+    private void Start()
+    {
+        mr = GetComponent<MeshRenderer>();
+    }
     void Update()
     {
-        if (isHoldingOrb && heldOrb != null)
+        var tag = isHoldingOrb && heldOrb != null ? "Lava" : "WaterOrb";
+        var target = FindNearest(tag);
+        
+        if (target != null)
         {
-            // Move forward while holding the orb
-            transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
-        }
-        else
-        {
-            // Find the nearest water orb
-            GameObject nearestOrb = FindNearestWaterOrb();
-            if (nearestOrb != null)
-            {
-                // Move towards the nearest orb
-                Vector3 moveDirection = (nearestOrb.transform.position - transform.position).normalized;
-                transform.Translate(moveDirection * movementSpeed * Time.deltaTime);
+            var targetWidth = target.GetComponent<Renderer>().bounds.size.x;
+            var targetPosition = target.transform.position - transform.position + new Vector3(targetWidth / 2, 0, 0);
+            Vector3 moveDirection = (targetPosition).normalized;
+            transform.Translate(moveDirection * movementSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(targetPosition, transform.position) < 1) {
+                dropWaterOrb();
             }
         }
     }
+    
 
-    GameObject FindNearestWaterOrb()
+    private GameObject FindNearest(string tag)
     {
-        GameObject[] waterOrbs = GameObject.FindGameObjectsWithTag("WaterOrb");
-        GameObject nearestOrb = null;
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+        GameObject nearestTaggedObject = null;
         float nearestDistance = Mathf.Infinity;
 
-        foreach (GameObject orb in waterOrbs)
+        foreach (GameObject orb in taggedObjects)
         {
             float distance = Vector3.Distance(transform.position, orb.transform.position);
             if (distance < nearestDistance)
             {
                 nearestDistance = distance;
-                nearestOrb = orb;
+                nearestTaggedObject = orb;
             }
         }
 
-        return nearestOrb;
+        return nearestTaggedObject;
     }
-
     void OnCollisionEnter(Collision collision)
     {
+        if (dead) {
+            return;
+        }
         if (!isHoldingOrb && collision.gameObject.CompareTag("WaterOrb"))
         {
             // Steal the water orb
@@ -65,16 +71,40 @@ public class ThiefBehavior : MonoBehaviour
             {
                 orbRb.isKinematic = true;
             }
-
-            // Destroy the water orb
-            Destroy(heldOrb);
         }
     }
 
-    public void HitByMagicBall(float damage)
+    private void toggleVisable()
     {
-        // Destroy the thief
+        mr.enabled = !mr.enabled;
+    }
+
+    private IEnumerator DestroyInSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         Destroy(gameObject);
+    }
+
+    public void HitByMagicBall()
+    {
+        if (this.heldOrb) {
+            dropWaterOrb();
+        }
+
+        dead = true;
+        // Destroy the thief
+        var mat = new UnityEngine.Material(mr.material);
+        mat.SetColor("_BaseColor", Color.red);
+        mr.material = mat;
+        InvokeRepeating("toggleVisable", 0, 0.05f);
+
+        StartCoroutine(DestroyInSeconds(0.5f));
+    }
+
+    private void dropWaterOrb() {
+        this.heldOrb.transform.parent = null;
+        Rigidbody orbRb = heldOrb.GetComponent<Rigidbody>();
+        orbRb.isKinematic = false;
     }
 }
 
