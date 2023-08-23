@@ -12,6 +12,7 @@ TagManager:
   - WaterOrb
   - MagicBall
   - Thief
+  - Lava
   layers:
   - Default
   - TransparentFX
