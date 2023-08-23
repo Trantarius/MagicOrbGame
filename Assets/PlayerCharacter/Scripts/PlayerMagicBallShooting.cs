@@ -9,6 +9,8 @@ public class PlayerMagicBallShooting : MonoBehaviour
     public float shootingForce = 10f;
     public float spawnOffset = 0.5f; // Adjust this value to set the desired offset from the nose
     public float maxTravelDistance = 10f; // The maximum distance the magic ball can travel before disappearing
+    public AudioSource shootingAudioSource;
+
 
     void Update()
     {
@@ -36,6 +38,9 @@ public class PlayerMagicBallShooting : MonoBehaviour
 
         // Instantiate the magic ball with the correct position and rotation
         GameObject magicBall = Instantiate(magicBallPrefab, spawnPosition, shootingPoint.rotation);
+
+        // Play the shooting sound from the shooting AudioSource
+        shootingAudioSource.Play();
 
         // Get the magic ball's Rigidbody component to apply initial velocity
         Rigidbody rb = magicBall.GetComponent<Rigidbody>();
