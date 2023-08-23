@@ -30,8 +30,6 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        Debug.Log(SceneManager.GetActiveScene().buildIndex + 1);
-        Debug.Log(SceneManager.sceneCountInBuildSettings);
         var nextSceneIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
         StartCoroutine(LoadLevel(nextSceneIndex));
     }
