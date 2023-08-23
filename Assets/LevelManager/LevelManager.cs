@@ -30,13 +30,15 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        var nextSceneIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCount;
+        Debug.Log(SceneManager.GetActiveScene().buildIndex + 1);
+        Debug.Log(SceneManager.sceneCountInBuildSettings);
+        var nextSceneIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
         StartCoroutine(LoadLevel(nextSceneIndex));
     }
 
     private IEnumerator LoadLevel(int nextSceneIndex)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(nextSceneIndex);
     }
 

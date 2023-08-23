@@ -32,11 +32,11 @@ public class TextMessages : MonoBehaviour
 
     public void ShowLevelCompletedText()
     {
-        textMessage.text = "Wo ho";
+        textMessage.text = "You Won :D";
     }
 
     public void ShowLevelFailedText()
     {
-        textMessage.text = "Oh no";
+        textMessage.text = "You Failed :'(";
     }
 }

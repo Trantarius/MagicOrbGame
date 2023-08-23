@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlatformingIntroScene.unity
     guid: 064e06e1304c26b48b08abae82c04cd8
+  - enabled: 1
+    path: Assets/Scenes/ScaryOrbLevel.unity
+    guid: e20f077993998c74bbeff4ed5be30016
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 589fba42090d7ff4c98d7be625226f47,
       type: 2}
