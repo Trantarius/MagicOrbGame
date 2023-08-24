@@ -21,14 +21,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AttractionOrbMaterial
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: cb7b764a4289b2a44b81979556ec7aec,
+    type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -78,6 +78,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_11A77486: 150
+    - Vector1_941410FE: 0.003
+    - Vector1_AAE41854: 6
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -104,6 +107,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_2474391: {r: 0.990566, g: 0.87375396, b: 0.87375396, a: 0}
+    - Color_2A043A86: {r: 4.0618396, g: 3.9767747, b: 3.1686602, a: 0}
+    - Color_F5FE9C7: {r: 0, g: 0.08892031, b: 0.98039216, a: 0}
     - _BaseColor: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 1}
     - _Color: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
