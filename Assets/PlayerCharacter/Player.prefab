@@ -146,7 +146,6 @@ GameObject:
   - component: {fileID: 5503147025163240055}
   - component: {fileID: 5503147025163240060}
   - component: {fileID: 2606067336296224135}
-  - component: {fileID: 4016738734657069430}
   - component: {fileID: -8626249030008277264}
   - component: {fileID: 3320737231264360189}
   m_Layer: 8
@@ -346,19 +345,6 @@ MonoBehaviour:
   spawnOffset: 0.5
   maxTravelDistance: 10
   shootingAudioSource: {fileID: 3320737231264360189}
---- !u!114 &4016738734657069430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5503147025163240053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c5bd6258479d048a06e02db374807c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
 --- !u!82 &-8626249030008277264
 AudioSource:
   m_ObjectHideFlags: 0

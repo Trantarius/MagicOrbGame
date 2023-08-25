@@ -84,16 +84,15 @@ public class PlayerMovement : MonoBehaviour
         isGrounded=false;
     }
 
-    void OnCollisionStay(Collision collision){
+    void OnCollisionStay(Collision collision) {
+        ContactPoint contact = collision.GetContact(0);
+        float dir = Vector3.Dot(Vector3.up,contact.normal);
 
-        ContactPoint contact=collision.GetContact(0);
-        float dir=Vector3.Dot(Vector3.up,contact.normal);
-
-        if(dir>0.707){// surface is < 45 degrees from horizontal
-            isGrounded=true;
+        if(dir > 0.707){// surface is < 45 degrees from horizontal
+            isGrounded = true;
             //nullify horizontal correction force, so that the player doesn't slide down shallow slopes.
             rb.AddForce(-Vector3.right*collision.impulse.x,ForceMode.Impulse);
-            floornormTotal+=contact.normal;
+            floornormTotal += contact.normal;
             floornormCount++;
         }
     }

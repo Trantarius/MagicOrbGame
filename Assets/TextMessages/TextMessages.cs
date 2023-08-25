@@ -5,6 +5,8 @@ public class TextMessages : MonoBehaviour
 {
     [SerializeField] 
     public Text textMessage;
+    [SerializeField]
+    public GameObject panel;
 
     public static TextMessages singletonInstance;
     void Awake()
@@ -12,6 +14,7 @@ public class TextMessages : MonoBehaviour
         if (singletonInstance == null)
         {
             singletonInstance = this;
+            panel.SetActive(false);
         }
         else
         {
@@ -32,11 +35,13 @@ public class TextMessages : MonoBehaviour
 
     public void ShowLevelCompletedText()
     {
-        textMessage.text = "You Won :D";
+        panel.SetActive(true);
+        textMessage.text = "You Won! :D";
     }
 
     public void ShowLevelFailedText()
     {
-        textMessage.text = "You Failed :'(";
+        panel.SetActive(true);
+        textMessage.text = "You Failed! :'(";
     }
 }

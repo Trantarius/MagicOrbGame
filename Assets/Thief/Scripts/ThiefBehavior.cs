@@ -8,7 +8,8 @@ public class ThiefBehavior : MonoBehaviour
     private MeshRenderer mr;
     private bool dead;
 
-    public float movementSpeed = 7f;
+    public float movementSpeed = 2f;
+    public float movementSpeedWhenHoldingOrb = 3f;
 
     private void Start()
     {
@@ -24,7 +25,8 @@ public class ThiefBehavior : MonoBehaviour
             var targetWidth = target.GetComponent<Renderer>().bounds.size.x;
             var targetPosition = target.transform.position - transform.position + new Vector3(targetWidth / 2, 0, 0);
             Vector3 moveDirection = (targetPosition).normalized;
-            transform.Translate(moveDirection * movementSpeed * Time.deltaTime);
+            var speed = isHoldingOrb ? movementSpeedWhenHoldingOrb : movementSpeed;
+            transform.Translate(moveDirection * speed * Time.deltaTime);
 
             if (Vector3.Distance(targetPosition, transform.position) < 1) {
                 dropWaterOrb();

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -307,6 +307,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Thief
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462131741723837604, guid: 0e1ae5b70689a5c40b65117dbd68558d,
+        type: 3}
+      propertyPath: movementSpeedWhenHoldingOrb
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7462131741723837605, guid: 0e1ae5b70689a5c40b65117dbd68558d,
         type: 3}
@@ -1172,12 +1177,12 @@ PrefabInstance:
     - target: {fileID: 650127190945761234, guid: 6a0d7c723d51dd24c8813141704fa034,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42
+      value: 2.09
       objectReference: {fileID: 0}
     - target: {fileID: 650127190945761234, guid: 6a0d7c723d51dd24c8813141704fa034,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0091953
+      value: -1.33
       objectReference: {fileID: 0}
     - target: {fileID: 650127190945761234, guid: 6a0d7c723d51dd24c8813141704fa034,
         type: 3}
@@ -1402,6 +1407,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4587197302974336420, guid: d9cec689dc5ab474ab43acc71c8fad76,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4757540180976947048, guid: d9cec689dc5ab474ab43acc71c8fad76,
         type: 3}
       propertyPath: m_Name
@@ -1846,6 +1856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6b817e2c5cfdc4a983d1859fc9587b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterOrbEnterAudioSource: {fileID: 0}
   orbsRequired: 1
 --- !u!65 &2109587105
 BoxCollider:
