@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +7,11 @@ public class WaterOrb : MonoBehaviour
 {
     [Tooltip("Scales force used to respond to stimuli")]
     public float magneticForce = 10f;
+    public AudioSource scaredAudioSource;
 
     private Rigidbody rb;
     private Detector detector;
+    private bool hasSeenScaryOrb = false;
 
     void Start()
     {
@@ -37,5 +40,10 @@ public class WaterOrb : MonoBehaviour
 
         Vector3 torq=Vector3.Cross(moveDir,Vector3.down);
         rb.AddTorque(torq*magneticForce);
+
+        if (!hasSeenScaryOrb && scaryOrbs.Count > 0) {
+            scaredAudioSource.Play();
+            hasSeenScaryOrb = true;
+        }
     }
 }
