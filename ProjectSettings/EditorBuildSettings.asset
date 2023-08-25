@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/ScaryOrbLevel.unity
     guid: e20f077993998c74bbeff4ed5be30016
+  - enabled: 1
+    path: Assets/Levels/AttractorOrbIntroductionLevel.unity
+    guid: e9ee1ee531c60fd42b22d65f29f5faed
+  - enabled: 1
+    path: Assets/Levels/TheifIntroductionLevel.unity
+    guid: 8317bb9a8715d0a499901bbbb8e08454
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 589fba42090d7ff4c98d7be625226f47,
       type: 2}
