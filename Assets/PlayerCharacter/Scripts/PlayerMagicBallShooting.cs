@@ -35,7 +35,7 @@ public class PlayerMagicBallShooting : MonoBehaviour
         Vector3 spawnPosition = shootingPoint.TransformPoint(localSpawnOffset);
 
         // Instantiate the magic ball with the correct position and rotation
-        GameObject magicBall = Instantiate(magicBallPrefab, spawnPosition, shootingPoint.rotation);
+        GameObject magicBall = Instantiate(magicBallPrefab, spawnPosition, Quaternion.identity);
 
         // Play the shooting sound from the shooting AudioSource
         shootingAudioSource.Play();

@@ -36,12 +36,12 @@ public class TextMessages : MonoBehaviour
     public void ShowLevelCompletedText()
     {
         panel.SetActive(true);
-        textMessage.text = "You Won! :D";
+        textMessage.text = "You Won!";
     }
 
     public void ShowLevelFailedText()
     {
         panel.SetActive(true);
-        textMessage.text = "You Failed! :'(";
+        textMessage.text = "You Failed!";
     }
 }
