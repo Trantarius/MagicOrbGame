@@ -1162,7 +1162,8 @@ PrefabInstance:
       propertyPath: jumpAudioSource
       value: 
       objectReference: {fileID: 1630010553}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7143516865634715989, guid: bc91dc6673a2ad251a2475d5fb3ffca2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bc91dc6673a2ad251a2475d5fb3ffca2, type: 3}
 --- !u!1 &715960351 stripped
 GameObject:
