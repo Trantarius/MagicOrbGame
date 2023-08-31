@@ -45,12 +45,12 @@ public class PlayerMovement : MonoBehaviour
         if (move > 0)
         {
             // Moving right, rotate player to face right
-            transform.rotation = Quaternion.Euler(0, 0, 0); // Face right (no Y-axis rotation)
+            transform.rotation = Quaternion.Euler(0, -60, 0); // Face right (no Y-axis rotation)
         }
         else if (move < 0)
         {
             // Moving left, rotate player to face left
-            transform.rotation = Quaternion.Euler(0, 180, 0); // Face left (180 degrees Y-axis rotation)
+            transform.rotation = Quaternion.Euler(0, 60, 0); // Face left (180 degrees Y-axis rotation)
         }
 
         if(jumpTime>0){
