@@ -144,7 +144,7 @@ public class PlayerControls : MonoBehaviour
 
         if (context.performed) {
             // Calculate the spawn offset in the shooting point's local space
-            Vector3 localSpawnOffset = new Vector3(isFacingRight ? spawnOffset : -spawnOffset, 0f, 0f);
+            Vector3 localSpawnOffset = new Vector3(isFacingRight ? spawnOffset : -spawnOffset, 0.4f, 0f);
 
             // Transform the local offset to world space using the shooting point's orientation
             Vector3 spawnPosition = transform.TransformPoint(localSpawnOffset);
