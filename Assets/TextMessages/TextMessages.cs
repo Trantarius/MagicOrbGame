@@ -25,12 +25,14 @@ public class TextMessages : MonoBehaviour
     {
         EventBus.onLevelCompleted += ShowLevelCompletedText;
         EventBus.onLevelFailed += ShowLevelFailedText;
+        EventBus.onGameFailed += ShowGameFailedText;
     }
 
     void OnDisable()
     {
         EventBus.onLevelCompleted -= ShowLevelCompletedText;
         EventBus.onLevelFailed -= ShowLevelFailedText;
+        EventBus.onGameFailed -= ShowGameFailedText;
     }
 
     public void ShowLevelCompletedText()
@@ -42,6 +44,12 @@ public class TextMessages : MonoBehaviour
     public void ShowLevelFailedText()
     {
         panel.SetActive(true);
-        textMessage.text = "You Failed!";
+        textMessage.text = "Level Failed!";
+    }
+
+    public void ShowGameFailedText()
+    {
+        panel.SetActive(true);
+        textMessage.text = "Game Failed!";
     }
 }

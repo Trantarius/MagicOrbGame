@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public HealthBar healthBar;
+
     public static LevelManager singletonInstance;
     void Awake()
     {
@@ -20,17 +22,23 @@ public class LevelManager : MonoBehaviour
     {
         EventBus.onLevelCompleted += LoadLevel;
         EventBus.onLevelFailed += RestartLevel;
+        EventBus.onGameFailed += RestartGame;
     }
 
     void OnDisable()
     {
         EventBus.onLevelCompleted -= LoadLevel;
         EventBus.onLevelFailed -= RestartLevel;
+        EventBus.onGameFailed -= RestartGame;
     }
 
     public void LoadLevel()
     {
         var nextSceneIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
+        if(nextSceneIndex == 0)
+        {
+            healthBar.RestoreHealth();
+        }
         StartCoroutine(LoadLevel(nextSceneIndex));
     }
 
@@ -44,5 +52,11 @@ public class LevelManager : MonoBehaviour
     {
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         StartCoroutine(LoadLevel(currentSceneIndex));
+    }
+
+    public void RestartGame()
+    {
+        healthBar.RestoreHealth();
+        StartCoroutine(LoadLevel(0));
     }
 }

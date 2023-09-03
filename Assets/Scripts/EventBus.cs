@@ -9,6 +9,9 @@ public class EventBus : MonoBehaviour
     public delegate void OnLevelFailed();
     public static event OnLevelFailed onLevelFailed;
 
+    public delegate void OnGameFailed();
+    public static event OnGameFailed onGameFailed;
+
    
     void Awake()
     {
@@ -35,6 +38,14 @@ public class EventBus : MonoBehaviour
         if (onLevelFailed != null)
         {
             onLevelFailed();
+        }
+    }
+
+    public static void RaiseOnGameFailed()
+    {
+        if(onGameFailed != null)
+        {
+            onGameFailed();
         }
     }
 }
