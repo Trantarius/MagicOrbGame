@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private PlayerInput pi;
     public AudioSource jumpAudioSource;
+    public HealthBar healthBar;
     private float jumpTime=0;
 
     //Used for finding the average floor normal
@@ -45,12 +46,12 @@ public class PlayerMovement : MonoBehaviour
         if (move > 0)
         {
             // Moving right, rotate player to face right
-            transform.rotation = Quaternion.Euler(0, -60, 0); // Face right (no Y-axis rotation)
+            transform.rotation = Quaternion.Euler(0, -60, 0); // Face right (-60 Y-axis rotation)
         }
         else if (move < 0)
         {
             // Moving left, rotate player to face left
-            transform.rotation = Quaternion.Euler(0, 60, 0); // Face left (180 degrees Y-axis rotation)
+            transform.rotation = Quaternion.Euler(0, 60, 0); // Face left (60 degrees Y-axis rotation)
         }
 
         if(jumpTime>0){
@@ -82,6 +83,11 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(right*moveForce*forceMul);
         
         isGrounded=false;
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            healthBar.RestoreHealth(); // cheeeeaating ༼ つ ◕_◕ ༽つ 
+        }
     }
 
     void OnCollisionStay(Collision collision) {
