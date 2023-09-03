@@ -19,7 +19,7 @@ public class ThiefBehavior : MonoBehaviour
     {
         var tag = isHoldingOrb && heldOrb != null ? "Lava" : "WaterOrb";
         var target = FindNearest(tag);
-        
+
         if (target != null)
         {
             var targetWidth = target.GetComponent<Renderer>().bounds.size.x;
@@ -28,12 +28,13 @@ public class ThiefBehavior : MonoBehaviour
             var speed = isHoldingOrb ? movementSpeedWhenHoldingOrb : movementSpeed;
             transform.Translate(moveDirection * speed * Time.deltaTime);
 
-            if (Vector3.Distance(targetPosition, transform.position) < 1) {
+            if (Vector3.Distance(targetPosition, transform.position) < 1)
+            {
                 dropWaterOrb();
             }
         }
     }
-    
+
 
     private GameObject FindNearest(string tag)
     {
@@ -55,7 +56,8 @@ public class ThiefBehavior : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (dead) {
+        if (dead)
+        {
             return;
         }
         if (!isHoldingOrb && collision.gameObject.CompareTag("WaterOrb"))
@@ -89,7 +91,8 @@ public class ThiefBehavior : MonoBehaviour
 
     public void HitByMagicBall()
     {
-        if (this.heldOrb) {
+        if (this.heldOrb)
+        {
             dropWaterOrb();
         }
 
@@ -103,10 +106,10 @@ public class ThiefBehavior : MonoBehaviour
         StartCoroutine(DestroyInSeconds(0.5f));
     }
 
-    private void dropWaterOrb() {
+    private void dropWaterOrb()
+    {
         this.heldOrb.transform.parent = null;
         Rigidbody orbRb = heldOrb.GetComponent<Rigidbody>();
         orbRb.isKinematic = false;
     }
 }
-
