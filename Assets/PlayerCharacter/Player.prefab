@@ -832,11 +832,10 @@ GameObject:
   - component: {fileID: 5503147025163240049}
   - component: {fileID: 5503147025163240048}
   - component: {fileID: 5503147025163240054}
-  - component: {fileID: 5503147025163240055}
   - component: {fileID: 5503147025163240060}
-  - component: {fileID: 2606067336296224135}
   - component: {fileID: -8626249030008277264}
   - component: {fileID: 3320737231264360189}
+  - component: {fileID: 2689156744790285697}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -861,7 +860,6 @@ Transform:
   - {fileID: 3137847698441637721}
   - {fileID: 5070505509745649170}
   - {fileID: 7515454571376068827}
-  - {fileID: 4904767838747925469}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -942,23 +940,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &5503147025163240055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5503147025163240053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9f2bd533e35e1d499169d2c4ef90e82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  acceleration: 10
-  jumpForce: 10
-  jumpDuration: 0.15
-  jumpAudioSource: {fileID: -8626249030008277264}
 --- !u!114 &5503147025163240060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,7 +968,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5503147025163240055}
+      - m_Target: {fileID: 2689156744790285697}
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -1002,7 +983,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5503147025163240055}
+      - m_Target: {fileID: 2689156744790285697}
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -1015,30 +996,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1c62c37c-3471-40ef-9d68-0ffe9789d46e
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2689156744790285697}
+        m_MethodName: OnFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 107df6a0-e7e2-4734-9a33-a4ae2432b61c
+    m_ActionName: Player/Fire[/Mouse/leftButton,/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2606067336296224135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5503147025163240053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d8165f028669d41881a994f450ef89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magicBallPrefab: {fileID: 5847375875106718717, guid: bd9c40f27377ef94187109da2158843f,
-    type: 3}
-  shootingPoint: {fileID: 4904767838747925469}
-  shootingForce: 10
-  spawnOffset: 0.5
-  maxTravelDistance: 10
-  shootingAudioSource: {fileID: 3320737231264360189}
 --- !u!82 &-8626249030008277264
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1231,6 +1208,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2689156744790285697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5503147025163240053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df36f88b759638842bbdc7ffd9b929cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  acceleration: 10
+  jumpForce: 10
+  jumpDuration: 0.15
+  jumpAudioSource: {fileID: -8626249030008277264}
+  magicBallPrefab: {fileID: 5847375875106718717, guid: bd9c40f27377ef94187109da2158843f,
+    type: 3}
+  shootingForce: 10
+  spawnOffset: 0.5
+  maxTravelDistance: 30
+  shootingAudioSource: {fileID: 3320737231264360189}
 --- !u!1 &6491698404343192445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,99 +1452,6 @@ Transform:
   m_Father: {fileID: 5503147025163240051}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7551707721289542303
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4904767838747925469}
-  - component: {fileID: 6802821895039712888}
-  - component: {fileID: 3542466463402668529}
-  - component: {fileID: 6232886536298096961}
-  m_Layer: 8
-  m_Name: ShootingPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4904767838747925469
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7551707721289542303}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9909, y: 0.9057, z: -0.1185}
-  m_LocalScale: {x: 0.002580679, y: 0.002580679, z: 0.002580679}
-  m_Children: []
-  m_Father: {fileID: 5503147025163240051}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6802821895039712888
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7551707721289542303}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3542466463402668529
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7551707721289542303}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 0d915dc53d1d0fd4b8255d13551646b0, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!135 &6232886536298096961
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7551707721289542303}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8180008331600530325
 GameObject:
   m_ObjectHideFlags: 0
