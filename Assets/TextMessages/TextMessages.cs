@@ -38,7 +38,7 @@ public class TextMessages : MonoBehaviour
     public void ShowLevelCompletedText()
     {
         panel.SetActive(true);
-        textMessage.text = "You Won!";
+        textMessage.text = "Level completed!";
     }
 
     public void ShowLevelFailedText()

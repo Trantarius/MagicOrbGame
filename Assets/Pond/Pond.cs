@@ -14,6 +14,9 @@ public class Pond : MonoBehaviour
             if (waterOrbEnterAudioSource != null) {
                 waterOrbEnterAudioSource.Play();
             }
+
+            Debug.Log(orbsCollected);
+            Debug.Log("req: " + waterOrbEnterAudioSource != null);
             if (orbsCollected >= orbsRequired)
             {
                 EventBus.RaiseOnLevelCompleted();
