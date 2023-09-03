@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerControls : MonoBehaviour
 {
     [Tooltip("Maximum horizontal target speed")]
     public float speed;
@@ -18,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float move;
     private bool isGrounded;
+    private bool isFacingRight = true;
     
     private Rigidbody rb;
     private PlayerInput pi;
@@ -29,7 +27,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 floornormTotal;
     private int floornormCount;
 
-    private Boolean isControlsDisabled = false;
+    private bool isControlsDisabled = false;
+
+    public GameObject magicBallPrefab;
+    public float shootingForce = 10f;
+    public float spawnOffset = 0.5f; // Adjust this value to set the desired offset from the nose
+    public float maxTravelDistance = 30f; // The maximum distance the magic ball can travel before disappearing
+    public AudioSource shootingAudioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -42,14 +46,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
+    {   
         if (move > 0)
         {
+            isFacingRight = true;
             // Moving right, rotate player to face right
             transform.rotation = Quaternion.Euler(0, -60, 0); // Face right (-60 Y-axis rotation)
         }
         else if (move < 0)
         {
+            isFacingRight = false;
             // Moving left, rotate player to face left
             transform.rotation = Quaternion.Euler(0, 60, 0); // Face left (60 degrees Y-axis rotation)
         }
@@ -109,25 +115,59 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        move=context.ReadValue<Vector2>().x;
+        move = context.ReadValue<Vector2>().x;
     }
 
-    public void OnJump(InputAction.CallbackContext context){
+    public void OnJump(InputAction.CallbackContext context) {
         if (isControlsDisabled) {
             return;
         }
 
-        if(context.performed){
+        if (context.performed) {
             //button is pressed
-            if(isGrounded){
+            if (isGrounded) {
                 // Play the jump sound
                 jumpAudioSource.Play();
 
-                jumpTime =jumpDuration;
+                jumpTime = jumpDuration;
             }
-        }else if(context.canceled){
+        } else if (context.canceled){
             //button is released
-            jumpTime=0;
+            jumpTime = 0;
+        }
+    }
+
+    public void OnFire(InputAction.CallbackContext context) {
+        if (isControlsDisabled) {
+            return;
+        }
+
+        if (context.performed) {
+            // Calculate the spawn offset in the shooting point's local space
+            Vector3 localSpawnOffset = new Vector3(isFacingRight ? spawnOffset : -spawnOffset, 0f, 0f);
+
+            // Transform the local offset to world space using the shooting point's orientation
+            Vector3 spawnPosition = transform.TransformPoint(localSpawnOffset);
+
+            // Instantiate the magic ball with the correct position and rotation
+            GameObject magicBall = Instantiate(
+                magicBallPrefab,
+                spawnPosition,
+                Quaternion.identity
+            );
+
+            // Play the shooting sound from the shooting AudioSource
+            shootingAudioSource.Play();
+
+            // Get the magic ball's Rigidbody component to apply initial velocity
+            Rigidbody rb = magicBall.GetComponent<Rigidbody>();
+
+            // Apply the shooting force in the X direction of the shooting point
+            rb.velocity = (isFacingRight ? rb.transform.right : Quaternion.Euler(0, 60, 0) * -rb.transform.right * 2.0f) * shootingForce;
+            Debug.Log(rb.velocity);
+
+            // Destroy the magic ball after a certain time or distance
+            Destroy(magicBall, maxTravelDistance / shootingForce);
         }
     }
 
