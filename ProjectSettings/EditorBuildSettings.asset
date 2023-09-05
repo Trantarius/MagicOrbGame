@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/TheifIntroductionLevel.unity
     guid: 8317bb9a8715d0a499901bbbb8e08454
+  - enabled: 1
+    path: Assets/Levels/GameCompleted.unity
+    guid: 181804c8c10e56b4ea3c9be28b9aa11c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 589fba42090d7ff4c98d7be625226f47,
       type: 2}

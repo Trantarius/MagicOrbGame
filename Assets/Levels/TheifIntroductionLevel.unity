@@ -1567,8 +1567,8 @@ MonoBehaviour:
   m_Text: 'Stop the thief from stealing the water orb! :O
 
 
-    Use MB1 to shot a
-    magic ball'
+    Use E to shot a magic
+    ball'
 --- !u!222 &1861145897
 CanvasRenderer:
   m_ObjectHideFlags: 0
