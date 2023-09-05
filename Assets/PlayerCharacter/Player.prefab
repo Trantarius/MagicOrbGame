@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 1464794333534900980}
   - component: {fileID: 5663079106628569187}
   - component: {fileID: 9125813449564440105}
-  - component: {fileID: 2829805259847230271}
   m_Layer: 8
   m_Name: Glasses 3
   m_TagString: Untagged
@@ -112,19 +111,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2829805259847230271
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356838046715048313}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1646668970227450431
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +252,6 @@ GameObject:
   - component: {fileID: 145583155202412003}
   - component: {fileID: 921391428274729389}
   - component: {fileID: 7417968399978676765}
-  - component: {fileID: 7802348312507296911}
   m_Layer: 8
   m_Name: Scarf 1
   m_TagString: Untagged
@@ -335,20 +320,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7802348312507296911
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2374208810317717268}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &2849786382407272347
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +408,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2849786382407272347}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b731542d43a614d6ebfbf30c131d0e00, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
@@ -455,7 +426,6 @@ GameObject:
   - component: {fileID: 1747484735982613700}
   - component: {fileID: 8457676069114466702}
   - component: {fileID: 7402095355281904006}
-  - component: {fileID: 9074312976875634177}
   m_Layer: 8
   m_Name: Glasses 1
   m_TagString: Untagged
@@ -524,20 +494,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &9074312976875634177
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3779493459971160446}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4020539961385000108
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +505,6 @@ GameObject:
   - component: {fileID: 8064985411596253713}
   - component: {fileID: 1826819111179894070}
   - component: {fileID: 8434793482840653113}
-  - component: {fileID: 8808866571318484741}
   m_Layer: 8
   m_Name: Right Eye 1
   m_TagString: Untagged
@@ -618,20 +573,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8808866571318484741
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4020539961385000108}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4883640609475405427
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +584,6 @@ GameObject:
   - component: {fileID: 2581176333649723217}
   - component: {fileID: 6307478830966917544}
   - component: {fileID: 4469081212152828297}
-  - component: {fileID: 4103626159735195135}
   m_Layer: 8
   m_Name: Scarf 2
   m_TagString: Untagged
@@ -712,19 +652,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4103626159735195135
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883640609475405427}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5029257195876572294
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +663,6 @@ GameObject:
   - component: {fileID: 5542330815899345122}
   - component: {fileID: 3217198761087305924}
   - component: {fileID: 5809546499901713283}
-  - component: {fileID: 7651479121850277777}
   m_Layer: 8
   m_Name: Glasses 2
   m_TagString: Untagged
@@ -805,20 +731,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7651479121850277777
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5029257195876572294}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &5503147025163240053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,6 +1137,7 @@ MonoBehaviour:
   jumpForce: 10
   jumpDuration: 0.15
   jumpAudioSource: {fileID: -8626249030008277264}
+  healthBar: {fileID: 0}
   magicBallPrefab: {fileID: 5847375875106718717, guid: bd9c40f27377ef94187109da2158843f,
     type: 3}
   shootingForce: 10
@@ -1242,7 +1155,6 @@ GameObject:
   - component: {fileID: 8430061946408533948}
   - component: {fileID: 7307529625646527449}
   - component: {fileID: 6551949990126615859}
-  - component: {fileID: 5378912473675685331}
   m_Layer: 8
   m_Name: Left Eye 1
   m_TagString: Untagged
@@ -1311,20 +1223,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &5378912473675685331
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491698404343192445}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &6918193713487520863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,7 +1234,6 @@ GameObject:
   - component: {fileID: 6589270741440398070}
   - component: {fileID: 214657760925397828}
   - component: {fileID: 8164835094775105327}
-  - component: {fileID: 2876354713899527669}
   m_Layer: 8
   m_Name: Coat
   m_TagString: Untagged
@@ -1405,20 +1302,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &2876354713899527669
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6918193713487520863}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &6928414108635687358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,7 +1455,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9120245717512024950}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b731542d43a614d6ebfbf30c131d0e00, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
