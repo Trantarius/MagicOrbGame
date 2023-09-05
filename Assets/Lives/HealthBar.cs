@@ -35,4 +35,16 @@ public class HealthBar : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerHealth", maxHealth);
         PlayerPrefs.Save();
     }
+
+    void OnEnable()
+    {
+        EventBus.onLevelCompleted += RestoreHealth;
+        EventBus.onGameFailed += RestoreHealth;
+    }
+
+    void OnDisable()
+    {
+        EventBus.onLevelCompleted -= RestoreHealth;
+        EventBus.onGameFailed -= RestoreHealth;
+    }
 }

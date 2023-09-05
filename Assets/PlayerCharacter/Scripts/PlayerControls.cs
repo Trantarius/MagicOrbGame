@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
@@ -6,7 +7,9 @@ public class PlayerControls : MonoBehaviour
     [Tooltip("Maximum horizontal target speed")]
     public float speed;
     [Tooltip("Force used to bring player to target speed")]
-    public float acceleration;
+    public float groundAcceleration;
+    [Tooltip("Force used to bring player to target speed")]
+    public float airAcceleration;
     [Tooltip("Impulse applied when player jumps")]
     public float jumpForce;
     [Tooltip("Time that space is held to reach max jump height")]
@@ -18,10 +21,8 @@ public class PlayerControls : MonoBehaviour
     private bool isFacingRight = true;
     
     private Rigidbody rb;
-    private PlayerInput pi;
     public AudioSource jumpAudioSource;
     public HealthBar healthBar;
-    private float jumpTime=0;
 
     //Used for finding the average floor normal
     private Vector3 floornormTotal;
@@ -34,12 +35,12 @@ public class PlayerControls : MonoBehaviour
     public float spawnOffset = 0.5f; // Adjust this value to set the desired offset from the nose
     public float maxTravelDistance = 30f; // The maximum distance the magic ball can travel before disappearing
     public AudioSource shootingAudioSource;
-
-    // Start is called before the first frame update
+    private float gravityMultiplierFalling = 2.5f;
+    private float gravityMultiplierHangTime = 0.5f;
+    private float hangTimeThreshold = 0.2f;
+    private float jumpPower = 15.0f;
     void Start()
     {
-        pi = GetComponent<PlayerInput>();
-        rb = GetComponent<Rigidbody>();
         jumpAudioSource = GetComponent<AudioSource>();
         //disables sleeping. If the body sleeps, we will stop receiving OnCollsionStay events.
         rb.sleepThreshold=0.0f;
@@ -60,13 +61,6 @@ public class PlayerControls : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 60, 0); // Face left (60 degrees Y-axis rotation)
         }
 
-        if(jumpTime>0){
-            if(pi.actions["Jump"].IsPressed()){
-                rb.AddForce(Vector3.up*jumpForce/jumpDuration);
-            }
-            jumpTime-=Time.fixedDeltaTime;
-        }
-
         // If on the ground, movement will be considered tangent to the ground surface.
         // This prevents the movement force from pushing the player into the air.
         Vector3 right;
@@ -79,16 +73,31 @@ public class PlayerControls : MonoBehaviour
             floornormCount=0;
         }
         else{
-            right=Vector3.right;
-            forceMul=0.25f;
+            right = Vector3.right;
+            forceMul = 0.25f;
+
+            // apply gravity
+            // Let the player hang mid-jump
+            var gravityScale = Math.Abs(rb.velocity.y) < hangTimeThreshold ?
+                gravityMultiplierHangTime :
+                gravityMultiplierFalling;
+
+            Vector3 gravity = -9.8f * gravityScale * Vector3.up;
+            rb.AddForce(gravity, ForceMode.Acceleration);            
         }
 
-        float currentSpeed=Vector3.Dot(rb.velocity,right);
-        float targetSpeed=move*speed;
-        float moveForce=(targetSpeed-currentSpeed)*acceleration;
-        rb.AddForce(right*moveForce*forceMul);
+        float currentSpeed = Vector3.Dot(rb.velocity, right);
+        float targetSpeed = move * speed;
+        float moveForce = (targetSpeed - currentSpeed) * (isGrounded ? groundAcceleration : airAcceleration);
         
-        isGrounded=false;
+        // Turn immediately for less floaty feel
+        if (rb.velocity.x < 0 && move > 0 || rb.velocity.x > 0 && move < 0) {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+       
+        rb.AddForce(right * moveForce * forceMul);
+        
+        isGrounded = false;
 
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -129,11 +138,11 @@ public class PlayerControls : MonoBehaviour
                 // Play the jump sound
                 jumpAudioSource.Play();
 
-                jumpTime = jumpDuration;
+                this.rb.velocity = new Vector2(this.rb.velocity.x, this.jumpPower);
             }
-        } else if (context.canceled){
-            //button is released
-            jumpTime = 0;
+        } else if (context.canceled) {
+            // Half speed if jump button is released as the player ascends
+            this.rb.velocity = new Vector2(this.rb.velocity.x, Mathf.Min(this.rb.velocity.y, this.rb.velocity.y / 2, 3.0f));
         }
     }
 
@@ -163,8 +172,7 @@ public class PlayerControls : MonoBehaviour
             Rigidbody rb = magicBall.GetComponent<Rigidbody>();
 
             // Apply the shooting force in the X direction of the shooting point
-            rb.velocity = (isFacingRight ? rb.transform.right : Quaternion.Euler(0, 60, 0) * -rb.transform.right * 2.0f) * shootingForce;
-            Debug.Log(rb.velocity);
+            rb.velocity = (isFacingRight ? rb.transform.right : -rb.transform.right) * shootingForce;
 
             // Destroy the magic ball after a certain time or distance
             Destroy(magicBall, maxTravelDistance / shootingForce);
@@ -173,17 +181,21 @@ public class PlayerControls : MonoBehaviour
 
     void OnEnable()
     {
-        EventBus.onLevelCompleted += StopaAndDisableControls;
-        EventBus.onLevelFailed += StopaAndDisableControls;
+        EventBus.onLevelCompleted += StopAndDisableControls;
+        EventBus.onLevelFailed += StopAndDisableControls;
+        EventBus.onGameFailed += StopAndDisableControls;
+
+        rb = GetComponent<Rigidbody>();
+        rb.useGravity = false;
     }
 
     void OnDisable()
     {
-        EventBus.onLevelCompleted -= StopaAndDisableControls;
-        EventBus.onLevelFailed -= StopaAndDisableControls;
+        EventBus.onLevelCompleted -= StopAndDisableControls;
+        EventBus.onLevelFailed -= StopAndDisableControls;
     }
 
-    private void StopaAndDisableControls()
+    private void StopAndDisableControls()
     {
         move = 0;
         isControlsDisabled = true;
