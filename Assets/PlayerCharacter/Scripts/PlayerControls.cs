@@ -181,8 +181,9 @@ public class PlayerControls : MonoBehaviour
 
     void OnEnable()
     {
-        EventBus.onLevelCompleted += StopaAndDisableControls;
-        EventBus.onLevelFailed += StopaAndDisableControls;
+        EventBus.onLevelCompleted += StopAndDisableControls;
+        EventBus.onLevelFailed += StopAndDisableControls;
+        EventBus.onGameFailed += StopAndDisableControls;
 
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
@@ -190,11 +191,11 @@ public class PlayerControls : MonoBehaviour
 
     void OnDisable()
     {
-        EventBus.onLevelCompleted -= StopaAndDisableControls;
-        EventBus.onLevelFailed -= StopaAndDisableControls;
+        EventBus.onLevelCompleted -= StopAndDisableControls;
+        EventBus.onLevelFailed -= StopAndDisableControls;
     }
 
-    private void StopaAndDisableControls()
+    private void StopAndDisableControls()
     {
         move = 0;
         isControlsDisabled = true;
