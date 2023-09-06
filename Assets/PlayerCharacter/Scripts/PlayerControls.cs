@@ -37,7 +37,7 @@ public class PlayerControls : MonoBehaviour
     public AudioSource shootingAudioSource;
     private float gravityMultiplierFalling = 2.5f;
     private float gravityMultiplierHangTime = 0.5f;
-    private float hangTimeThreshold = 0.2f;
+    private float hangTimeThreshold = 0.1f;
     private float jumpPower = 15.0f;
     void Start()
     {

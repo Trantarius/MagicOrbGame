@@ -52,4 +52,14 @@ public class LevelManager : MonoBehaviour
     {
         StartCoroutine(LoadLevel(0));
     }
+
+
+    public void Update()
+    {   // Reset game on "r" press
+        if (Input.GetKeyDown("r"))
+        { //If you press R
+            var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            StartCoroutine(LoadLevel(currentSceneIndex)); //Load scene called Game
+        }
+    }
 }
