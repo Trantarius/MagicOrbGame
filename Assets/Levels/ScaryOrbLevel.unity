@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17137691, g: 0.19496927, b: 0.35504243, a: 1}
+  m_IndirectSpecularColor: {r: 0.18235758, g: 0.20469478, b: 0.34935305, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1504,7 +1504,7 @@ PrefabInstance:
     - target: {fileID: 4757540180976947048, guid: d9cec689dc5ab474ab43acc71c8fad76,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4757540180976947050, guid: d9cec689dc5ab474ab43acc71c8fad76,
         type: 3}
@@ -1930,6 +1930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 35855654326078476, guid: 4671da7af0683124bb70eb15dc2d8bfe,
         type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 35855654326078476, guid: 4671da7af0683124bb70eb15dc2d8bfe,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1995,13 +2000,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 35855655741396828, guid: 4671da7af0683124bb70eb15dc2d8bfe,
         type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 35855655741396828, guid: 4671da7af0683124bb70eb15dc2d8bfe,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 298275829981920447, guid: 4671da7af0683124bb70eb15dc2d8bfe,
         type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298275829981920447, guid: 4671da7af0683124bb70eb15dc2d8bfe,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 895396042661135080, guid: 4671da7af0683124bb70eb15dc2d8bfe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 895396042661135080, guid: 4671da7af0683124bb70eb15dc2d8bfe,
         type: 3}
