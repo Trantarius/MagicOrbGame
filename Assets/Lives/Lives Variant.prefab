@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad17dff3760d1df4b86c98e8dc94aa89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
 --- !u!1 &452023593
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,10 +440,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3420425978767689051, guid: f1877e0515c45e54ea693c8daa8c8472,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420425978767689051, guid: f1877e0515c45e54ea693c8daa8c8472,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3420425979290465252, guid: f1877e0515c45e54ea693c8daa8c8472,
         type: 3}
       propertyPath: m_Name
-      value: Lives
+      value: Lives Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3420425979290465253, guid: f1877e0515c45e54ea693c8daa8c8472,
         type: 3}
