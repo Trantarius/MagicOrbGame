@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Levels/TheifIntroductionLevel.unity
     guid: 8317bb9a8715d0a499901bbbb8e08454
   - enabled: 1
+    path: Assets/Levels/ScaryOrbDropLevel.unity
+    guid: 294c125888b66f04ab75d85b493b2734
+  - enabled: 1
     path: Assets/Levels/GameCompleted.unity
     guid: 181804c8c10e56b4ea3c9be28b9aa11c
   m_configObjects:
