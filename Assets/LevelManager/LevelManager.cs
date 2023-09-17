@@ -21,6 +21,8 @@ public class LevelManager : MonoBehaviour
         EventBus.onLevelCompleted += LoadLevel;
         EventBus.onLevelFailed += RestartLevel;
         EventBus.onGameFailed += RestartGame;
+        EventBus.onGameRestarted += RestartGame;
+        EventBus.onGameStarted += StartGame;
     }
 
     void OnDisable()
@@ -28,15 +30,17 @@ public class LevelManager : MonoBehaviour
         EventBus.onLevelCompleted -= LoadLevel;
         EventBus.onLevelFailed -= RestartLevel;
         EventBus.onGameFailed -= RestartGame;
+        EventBus.onGameRestarted -= RestartGame;
+        EventBus.onGameStarted -= StartGame;
     }
 
     public void LoadLevel()
     {
         var nextSceneIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
-        StartCoroutine(LoadLevel(nextSceneIndex));
+        StartCoroutine(LoadLevelDelayed(nextSceneIndex));
     }
 
-    private IEnumerator LoadLevel(int nextSceneIndex)
+    private IEnumerator LoadLevelDelayed(int nextSceneIndex)
     {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(nextSceneIndex);
@@ -45,21 +49,25 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel()
     {
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        StartCoroutine(LoadLevel(currentSceneIndex));
+        StartCoroutine(LoadLevelDelayed(currentSceneIndex));
     }
 
     public void RestartGame()
     {
-        StartCoroutine(LoadLevel(0));
+         SceneManager.LoadScene(0);
     }
 
+    public void StartGame()
+    {
+         SceneManager.LoadScene(1);
+    }
 
     public void Update()
     {   // Reset game on "r" press
         if (Input.GetKeyDown("r"))
         { //If you press R
             var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            StartCoroutine(LoadLevel(currentSceneIndex)); //Load scene called Game
+            StartCoroutine(LoadLevelDelayed(currentSceneIndex)); //Load scene called Game
         }
     }
 }
