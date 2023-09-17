@@ -39,11 +39,20 @@ public class PlayerControls : MonoBehaviour
     private float gravityMultiplierHangTime = 0.5f;
     private float hangTimeThreshold = 0.1f;
     private float jumpPower = 15.0f;
+    private MeshRenderer mr;
+    private float timeSinceHit = 0;
+    private Material originalMaterial;
     void Start()
     {
         jumpAudioSource = GetComponent<AudioSource>();
         //disables sleeping. If the body sleeps, we will stop receiving OnCollsionStay events.
         rb.sleepThreshold=0.0f;
+        mr = GetComponent<MeshRenderer>();
+    }
+
+    void Update()
+    {
+        timeSinceHit += Time.deltaTime;   
     }
 
     void FixedUpdate()
@@ -184,6 +193,7 @@ public class PlayerControls : MonoBehaviour
         EventBus.onLevelCompleted += StopAndDisableControls;
         EventBus.onLevelFailed += StopAndDisableControls;
         EventBus.onGameFailed += StopAndDisableControls;
+        EventBus.onPlayerHit += OnPlayerHit;
 
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
@@ -193,11 +203,42 @@ public class PlayerControls : MonoBehaviour
     {
         EventBus.onLevelCompleted -= StopAndDisableControls;
         EventBus.onLevelFailed -= StopAndDisableControls;
+        EventBus.onPlayerHit -= OnPlayerHit;
     }
 
     private void StopAndDisableControls()
     {
         move = 0;
         isControlsDisabled = true;
+    }
+
+    private void OnPlayerHit(float damage)
+    {
+        if (timeSinceHit > 0.5f)
+        {
+            DamageAnimation();
+            EventBus.RaiseOnDamageTaken(damage);
+            timeSinceHit = 0;
+        }
+    }
+    private void DamageAnimation()
+    {
+        var mat = new Material(mr.material);
+        originalMaterial = mr.material;
+        mat.SetColor("_BaseColor", Color.red);
+        mr.material = mat;
+        InvokeRepeating("ToggleVisable", 0, 0.05f);
+        Invoke("StopDamageAnimation", 0.5f);
+    }
+
+    private void StopDamageAnimation()
+    {
+        CancelInvoke("ToggleVisable");
+        mr.material = originalMaterial;
+    }
+
+    private void ToggleVisable()
+    {
+        mr.enabled = !mr.enabled;
     }
 }

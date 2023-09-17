@@ -78,7 +78,7 @@ public class ThiefBehavior : MonoBehaviour
         }
     }
 
-    private void toggleVisable()
+    private void ToggleVisable()
     {
         mr.enabled = !mr.enabled;
     }
@@ -101,7 +101,7 @@ public class ThiefBehavior : MonoBehaviour
         var mat = new UnityEngine.Material(mr.material);
         mat.SetColor("_BaseColor", Color.red);
         mr.material = mat;
-        InvokeRepeating("toggleVisable", 0, 0.05f);
+        InvokeRepeating("ToggleVisable", 0, 0.05f);
 
         StartCoroutine(DestroyInSeconds(0.5f));
     }

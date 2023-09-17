@@ -2,18 +2,19 @@
 
 public class Lava : MonoBehaviour
 {
-    public HealthBar healthBar;
-
     void OnTriggerEnter(Collider col)
     {
-        if ((col.gameObject.tag == "WaterOrb" || col.gameObject.tag == "Player") && healthBar.health != 1f)
+        if (col.gameObject.tag == "WaterOrb")
         {
-            healthBar.TakeDamage(1f);
             EventBus.RaiseOnLevelFailed();
-        } 
-        else if ((col.gameObject.tag == "WaterOrb" || col.gameObject.tag == "Player") && healthBar.health == 1f)
-        {
-            EventBus.RaiseOnGameFailed();
         }
+    }
+
+    void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            EventBus.RaiseOnPlayerHit(1f);
+        } 
     }
 }

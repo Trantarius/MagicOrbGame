@@ -19,14 +19,16 @@ public class HealthBar : MonoBehaviour
         health = PlayerPrefs.GetFloat("PlayerHealth", maxHealth); 
         healthBar.fillAmount = health / maxHealth; 
     }
-    public void TakeDamage(float damage)
+    private void TakeDamage(float damage)
     {
-        if (health > 0)
+        health -= damage;
+        //saves the updated health value to PlayerPrefs
+        PlayerPrefs.SetFloat("PlayerHealth", health);
+        PlayerPrefs.Save();
+
+        if (health <= 0)
         {
-            health -= damage;
-            //saves the updated health value to PlayerPrefs
-            PlayerPrefs.SetFloat("PlayerHealth", health);
-            PlayerPrefs.Save();
+            EventBus.RaiseOnGameFailed();
         }
     }
     
@@ -40,11 +42,13 @@ public class HealthBar : MonoBehaviour
     {
         EventBus.onLevelCompleted += RestoreHealth;
         EventBus.onGameFailed += RestoreHealth;
+        EventBus.onDamageTaken += TakeDamage;
     }
 
     void OnDisable()
     {
         EventBus.onLevelCompleted -= RestoreHealth;
         EventBus.onGameFailed -= RestoreHealth;
+        EventBus.onDamageTaken -= TakeDamage;
     }
 }

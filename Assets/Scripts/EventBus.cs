@@ -15,6 +15,10 @@ public class EventBus : MonoBehaviour
     public static event OnGameRestarted onGameRestarted;
     public delegate void OnGameStarted();
     public static event OnGameStarted onGameStarted;
+    public delegate void OnDamageTaken(float damage);
+    public static event OnDamageTaken onDamageTaken;
+    public delegate void OnPlayerHit(float damage);
+    public static event OnPlayerHit onPlayerHit;
 
    
     void Awake()
@@ -66,6 +70,21 @@ public class EventBus : MonoBehaviour
         if (onGameStarted != null)
         {
             onGameStarted();
+        }
+    }
+
+    public static void RaiseOnDamageTaken(float damage)
+    {
+        if (onDamageTaken != null)
+        {
+            onDamageTaken(damage);
+        }
+    }
+    public static void RaiseOnPlayerHit(float damage)
+    {
+        if (onPlayerHit != null)
+        {
+            onPlayerHit(damage);
         }
     }
 }
